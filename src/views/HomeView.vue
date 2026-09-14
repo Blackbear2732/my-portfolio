@@ -126,12 +126,13 @@ import { asset } from '@/utils/asset'
 import { uiActions } from '@/store/ui'
 
 const carouselImages = [
-  'image/lunbo/微信图片_20241030134331.jpg',
-  'image/lunbo/微信图片_20241030134345.jpg',
-  'image/lunbo/微信图片_20241030134346.jpg',
-  'image/lunbo/微信图片_20241030134348.jpg',
-  'image/lunbo/微信图片_20241030134351.jpg',
-  'image/lunbo/微信图片_20241030134354.jpg'
+  'image/carousel/carousel-01.jpg',
+  'image/carousel/carousel-02.jpg',
+  'image/carousel/carousel-03.jpg',
+  'image/carousel/carousel-04.jpg',
+  'image/carousel/carousel-05.jpg',
+  'image/carousel/carousel-06.jpg',
+  'image/carousel/carousel-07.jpg'
 ]
 
 const currentSlide = ref(0)

@@ -1,6 +1,6 @@
 export const site = {
-  name: '张钧益',
-  title: '张钧益 | 个人网站',
+  name: 'Black_bear',
+  title: 'Black_bear | 个人网站',
   avatar: 'image/avatar.jpg',
   email: 'zhangjunyi2732@outlook.com',
   phone: '13133093346',
