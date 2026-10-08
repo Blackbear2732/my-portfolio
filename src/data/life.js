@@ -1,18 +1,5 @@
 export const lifeSections = [
-  {
-    id: 'beijing',
-    title: '2024年10月1日至10月5日 · 北京游',
-    subtitle: '国庆假期，漫步古都，感受历史文化的魅力',
-    timeline: { date: '2024.10', title: '北京游' },
-    items: [
-      { src: 'image/life/beijing/beijing-01.jpg', title: '天安门夜景', date: '2024年10月1日', desc: '华灯初上，金碧辉煌的城楼在夜色中愈发庄严肃穆。' },
-      { src: 'image/life/beijing/beijing-02.jpg', title: '圆明园遗址', date: '2024年10月1日', desc: '昔日皇家园林的遗迹，诉说着历史的沧桑与警示。' },
-      { src: 'image/life/beijing/beijing-03.jpg', title: '万里长城', date: '2024年10月2日', desc: '蜿蜒于山脉之巅，展现着中华民族的伟大智慧与气魄。' },
-      { src: 'image/life/beijing/beijing-04.jpg', title: '天坛', date: '2024年10月4日', desc: '明清两代帝王祭天的场所，中国现存规模最大的古代祭祀建筑群。' },
-      { src: 'image/life/beijing/beijing-05.jpg', title: '天安门广场', date: '2024年10月4日', desc: '象征着新中国的心脏，见证了无数历史时刻的庄严广场。' },
-      { src: 'image/life/beijing/beijing-06.jpg', title: '北京大学', date: '2024年10月4日', desc: '百年学府的精神象征，静谧优雅的未名湖映照着燕园的文化底蕴。' }
-    ]
-  },
+
   {
     id: 'qingdao',
     title: '2024年7月31日至8月4日 · 青岛游',
@@ -43,6 +30,20 @@ export const lifeSections = [
           { src: 'image/life/qingdao/beach-07.jpg', title: '晨曦海边', date: '2024年8月3日', desc: '清晨的海边，宁静而美好。' }
         ]
       }
+    ]
+  },
+  {
+    id: 'beijing',
+    title: '2024年10月1日至10月5日 · 北京游',
+    subtitle: '国庆假期，漫步古都，感受历史文化的魅力',
+    timeline: { date: '2024.10', title: '北京游' },
+    items: [
+      { src: 'image/life/beijing/beijing-01.jpg', title: '天安门夜景', date: '2024年10月1日', desc: '华灯初上，金碧辉煌的城楼在夜色中愈发庄严肃穆。' },
+      { src: 'image/life/beijing/beijing-02.jpg', title: '圆明园遗址', date: '2024年10月1日', desc: '昔日皇家园林的遗迹，诉说着历史的沧桑与警示。' },
+      { src: 'image/life/beijing/beijing-03.jpg', title: '万里长城', date: '2024年10月2日', desc: '蜿蜒于山脉之巅，展现着中华民族的伟大智慧与气魄。' },
+      { src: 'image/life/beijing/beijing-04.jpg', title: '天坛', date: '2024年10月4日', desc: '明清两代帝王祭天的场所，中国现存规模最大的古代祭祀建筑群。' },
+      { src: 'image/life/beijing/beijing-05.jpg', title: '天安门广场', date: '2024年10月4日', desc: '象征着新中国的心脏，见证了无数历史时刻的庄严广场。' },
+      { src: 'image/life/beijing/beijing-06.jpg', title: '北京大学', date: '2024年10月4日', desc: '百年学府的精神象征，静谧优雅的未名湖映照着燕园的文化底蕴。' }
     ]
   },
   {
@@ -121,7 +122,16 @@ export const lifeSections = [
     id: 'yunnan',
     title: '2025年7月25日至7月31日 · 云南之旅',
     subtitle: '苍山洱海、古城慢时光，西南边陲的夏日记忆',
-    timeline: { date: '2025.07', title: '云南游' },
+    timeline: {
+      date: '2025.07',
+      title: '云南游',
+      children: [
+        { id: 'dali', title: '大理' },
+        { id: 'lijiang', title: '丽江' },
+        { id: 'xishuangbanna', title: '西双版纳' },
+        { id: 'kunming', title: '昆明' }
+      ]
+    },
     subSections: [
       {
         id: 'dali',
@@ -145,6 +155,15 @@ export const lifeSections = [
         id: 'xishuangbanna',
         title: '西双版纳 · 景洪',
         date: '2025年7月31日',
+        items: [
+          { src: 'image/yunnan/xishuangbanna-01.jpg', title: '景洪街头', date: '2025年7月31日', desc: '热带雨林气候下的边陲城市，棕榈树与佛寺随处可见。' },
+          { src: 'image/yunnan/xishuangbanna-02.jpg', title: '湄公河畔', date: '2025年7月31日', desc: '澜沧江—湄公河穿城而过，夕阳下的江面金光粼粼。' }
+        ]
+      },
+      {
+        id: 'kunming',
+        title: '昆明',
+        date: '2025年8月1日',
         items: [
           { src: 'image/yunnan/xishuangbanna-01.jpg', title: '景洪街头', date: '2025年7月31日', desc: '热带雨林气候下的边陲城市，棕榈树与佛寺随处可见。' },
           { src: 'image/yunnan/xishuangbanna-02.jpg', title: '湄公河畔', date: '2025年7月31日', desc: '澜沧江—湄公河穿城而过，夕阳下的江面金光粼粼。' }
@@ -191,6 +210,18 @@ export const lifeSections = [
       { src: 'image/xinzhou/xinzhou-01.jpg', title: '忻州古城', date: '2026年5月4日', desc: '秀容街上，青砖灰瓦、飞檐翘角，重现古城风貌。' },
       { src: 'image/xinzhou/xinzhou-02.jpg', title: '南北大街', date: '2026年5月4日', desc: '古街两侧店铺林立，忻州凉皮、手擀面等地方美食香气扑鼻。' },
       { src: 'image/xinzhou/xinzhou-03.jpg', title: '忻府区街景', date: '2026年5月3日', desc: '光明街一带，新旧交融，感受这座城市的日常生活节奏。' }
+    ]
+  },
+  // ==================== 太原晋祠 ====================
+  {
+    id: 'taiyuan',
+    title: '2026年10月6日 · 太原晋祠',
+    subtitle: '国庆假期，探访三晋名胜，感受千年祠堂园林之美',
+    timeline: { date: '2026.10', title: '太原晋祠' },
+    items: [
+      { src: 'image/taiyuan/jinci-01.jpg', title: '晋祠圣母殿', date: '2026年10月6日', desc: '晋祠主殿圣母殿，北宋建筑杰作，殿内宋塑侍女像神态各异。' },
+      { src: 'image/taiyuan/jinci-02.jpg', title: '鱼沼飞梁', date: '2026年10月6日', desc: '十字形古桥架于鱼沼之上，中国现存古桥中的孤例。' },
+      { src: 'image/taiyuan/jinci-03.jpg', title: '难老泉', date: '2026年10月6日', desc: '晋水源头，泉水长年不息，被誉为"晋阳第一泉"。' }
     ]
   }
 ]
