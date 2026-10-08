@@ -489,3 +489,192 @@ html { scroll-behavior: smooth; }
   font-weight: 500;
   letter-spacing: 0.5px;
 }
+
+/* 技能栈 */
+.skills-section {
+  padding: 60px 0;
+  background-color: #ffffff;
+}
+.skills-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.skills-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.skills-header i {
+  font-size: 40px;
+  color: #333399;
+  margin-bottom: 20px;
+}
+.skills-header h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+.skills-header p {
+  font-size: 1.1rem;
+  color: #666;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+.skill-card {
+  background: #f8f9fc;
+  padding: 30px;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(51, 51, 153, 0.1);
+}
+.skill-card h3 {
+  font-size: 1.3rem;
+  color: #333399;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eef0ff;
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.skill-tags span {
+  display: inline-block;
+  padding: 6px 14px;
+  background-color: #ffffff;
+  color: #333;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+.skill-tags span:hover {
+  background-color: #333399;
+  color: #ffffff;
+  border-color: #333399;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .skill-card {
+    padding: 20px;
+  }
+  .skill-card h3 {
+    font-size: 1.1rem;
+  }
+  .skill-tags span {
+    font-size: 0.85rem;
+    padding: 5px 12px;
+  }
+}
+/* 首页个人信息标签行 */
+.profile-badge {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+.profile-badge span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background-color: #eef0ff;
+  color: #333399;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+.profile-badge span i {
+  font-size: 0.85rem;
+}
+
+/* 个人优势区块 */
+.strengths-section {
+  padding: 60px 0;
+  background-color: #f8f8f8;
+}
+.strengths-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.strengths-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.strengths-header i {
+  font-size: 40px;
+  color: #333399;
+  margin-bottom: 20px;
+}
+.strengths-header h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+.strengths-header p {
+  font-size: 1.1rem;
+  color: #666;
+}
+.strengths-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+.strength-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  border-left: 4px solid #333399;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.strength-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(51, 51, 153, 0.1);
+}
+.strength-card i {
+  font-size: 28px;
+  color: #333399;
+  margin-bottom: 15px;
+}
+.strength-card h3 {
+  font-size: 1.25rem;
+  color: #333;
+  margin-bottom: 12px;
+}
+.strength-card p {
+  color: #666;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .profile-badge {
+    gap: 8px;
+  }
+  .profile-badge span {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+  .strengths-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .strength-card {
+    padding: 20px;
+  }
+  .strength-card h3 {
+    font-size: 1.1rem;
+  }
+}
