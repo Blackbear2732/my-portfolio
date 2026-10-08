@@ -6,7 +6,7 @@ export const lifeSections = [
     subtitle: '明清古城的时光标本',
     timeline: { date: '2024.05', title: '平遥古城' },
     items: [
-      { title: '平遥古城', date: '2024年5月1日', desc: '待补充。' }
+      { title: '平遥古城', date: '2024年5月1日', desc: '中国现存最完整的明清县城之一，城墙巍峨，街巷规整。走在青石板上，票号、镖局、古民居一一铺展，晋商百年繁华仿佛就在眼前。。' }
     ]
   },
 
@@ -17,7 +17,7 @@ export const lifeSections = [
     subtitle: '寒食清明之源，介子推隐居之地',
     timeline: { date: '2024.06', title: '绵山' },
     items: [
-      { title: '绵山', date: '2024年6月10日', desc: '待补充。' }
+      { title: '绵山', date: '2024年6月10日', desc: '寒食清明的发源地。相传介子推隐于此处，抱树而亡，后人禁火寒食以纪念。山势险峻，栈道悬空，古刹掩映于苍翠之间，一步一景，都是故事。。' }
     ]
   },
   {
@@ -220,7 +220,7 @@ export const lifeSections = [
         title: '昆明',
         date: '2025年8月1日',
         items: [
-          { title: '昆明', date: '2025年8月1日', desc: '待补充。' }
+          { title: '昆明', date: '2025年8月1日', desc: '春城昆明，四季如春。滇池的水面开阔辽远，翠湖的红嘴鸥在冬日里盘旋。街边的鲜花与米线，让旅途的收尾也带着温度。' }
         ]
       }
     ]
@@ -260,7 +260,7 @@ export const lifeSections = [
     subtitle: '金代建筑瑰宝，朔州千年古刹',
     timeline: { date: '2025.10', title: '朔州崇福寺' },
     items: [
-      { title: '崇福寺', date: '2025年10月2日', desc: '待补充。' }
+      { title: '崇福寺', date: '2025年10月2日', desc: '金代建筑的瑰宝。弥陀殿气势雄浑，殿内彩塑、壁画、琉璃脊饰保存完好，是研究金代建筑与艺术的珍贵实物。古寺幽静，梵音袅袅，一眼千年。' }
     ]
   },
 
@@ -283,7 +283,7 @@ export const lifeSections = [
     subtitle: '国庆假期，探访三晋名胜，感受千年祠堂园林之美',
     timeline: { date: '2026.10', title: '太原晋祠' },
     items: [
-      { title: '晋祠圣母殿', date: '2026年10月6日', desc: '晋祠主殿圣母殿，北宋建筑杰作，殿内宋塑侍女像神态各异。' },
+      { src: 'image/life/taiyuan/jinci-01.jpg', title: '晋祠圣母殿', date: '2026年10月6日', desc: '晋祠主殿圣母殿，北宋建筑杰作，殿内宋塑侍女像神态各异。' },
       { title: '鱼沼飞梁', date: '2026年10月6日', desc: '十字形古桥架于鱼沼之上，中国现存古桥中的孤例。' },
       { title: '难老泉', date: '2026年10月6日', desc: '晋水源头，泉水长年不息，被誉为"晋阳第一泉"。' }
     ]
