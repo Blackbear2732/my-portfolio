@@ -10,64 +10,83 @@
     </div>
   </section>
 
-  <section class="life-content">
-    <template v-for="section in lifeSections" :key="section.id">
-      <div class="life-category" :id="section.id">
-        <h2>{{ section.title }}</h2>
-        <p>{{ section.subtitle }}</p>
-      </div>
+    <section class="life-content">
+      <div
+          v-for="section in lifeSections"
+          :key="section.id"
+          class="life-section"
+          :id="section.id"
+      >
+        <!-- 行程标题区 -->
+        <header class="life-section-header">
+          <h2>{{ section.title }}</h2>
+          <p v-if="section.subtitle">{{ section.subtitle }}</p>
+        </header>
 
-      <div v-if="section.items" class="life-grid">
-        <div v-for="(item, i) in section.items" :key="i" class="life-item">
-          <img
-              v-if="item.src"
-              :src="asset(item.src)"
-              :alt="item.title"
-              loading="lazy"
-              decoding="async"
-              @click="openImage(item)"
-          />
-          <div v-else class="life-item-noimg">
-            <i class="fas fa-pen-fancy"></i>
-          </div>
-          <div class="life-item-info">
-            <h3>{{ item.title }}</h3>
-            <p>{{ item.date }}</p>
-            <p class="description">{{ item.desc }}</p>
-          </div>
-        </div>
-      </div>
-
-      <template v-if="section.subSections">
-        <template v-for="(sub, si) in section.subSections" :key="si">
-          <div class="life-subcategory" :id="sub.id">
-            <h3>{{ sub.title }}</h3>
-            <p>{{ sub.date }}</p>
-          </div>
-          <div class="life-grid">
-            <div v-for="(item, i) in sub.items" :key="i" class="life-item">
+        <!-- 无子章节：直接展示条目 -->
+        <div v-if="section.items" class="life-photo-grid">
+          <div
+              v-for="(item, i) in section.items"
+              :key="i"
+              class="life-photo"
+              :class="{ 'no-image': !item.src }"
+              @click="item.src && openImage(item)"
+          >
+            <div v-if="item.src" class="life-photo-img">
               <img
-                  v-if="item.src"
                   :src="asset(item.src)"
                   :alt="item.title"
                   loading="lazy"
                   decoding="async"
-                  @click="openImage(item)"
               />
-              <div v-else class="life-item-noimg">
-                <i class="fas fa-pen-fancy"></i>
-              </div>
-              <div class="life-item-info">
-                <h3>{{ item.title }}</h3>
-                <p>{{ item.date }}</p>
-                <p class="description">{{ item.desc }}</p>
+            </div>
+            <div class="life-photo-caption">
+              <h4>{{ item.title }}</h4>
+              <p class="life-photo-date">{{ item.date }}</p>
+              <p class="life-photo-desc">{{ item.desc }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 有子章节 -->
+        <div v-if="section.subSections" class="life-subsections">
+          <div
+              v-for="sub in section.subSections"
+              :key="sub.id"
+              class="life-subsection"
+              :id="sub.id"
+          >
+            <header class="life-subsection-header">
+              <h3>{{ sub.title }}</h3>
+              <p v-if="sub.date">{{ sub.date }}</p>
+            </header>
+            <div class="life-photo-grid">
+              <div
+                  v-for="(item, i) in sub.items"
+                  :key="i"
+                  class="life-photo"
+                  :class="{ 'no-image': !item.src }"
+                  @click="item.src && openImage(item)"
+              >
+                <div v-if="item.src" class="life-photo-img">
+                  <img
+                      :src="asset(item.src)"
+                      :alt="item.title"
+                      loading="lazy"
+                      decoding="async"
+                  />
+                </div>
+                <div class="life-photo-caption">
+                  <h4>{{ item.title }}</h4>
+                  <p class="life-photo-date">{{ item.date }}</p>
+                  <p class="life-photo-desc">{{ item.desc }}</p>
+                </div>
               </div>
             </div>
           </div>
-        </template>
-      </template>
-    </template>
-  </section>
+        </div>
+      </div>
+    </section>
 
     <div class="timeline-nav">
       <div

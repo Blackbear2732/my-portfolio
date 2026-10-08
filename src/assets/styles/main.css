@@ -202,66 +202,235 @@ html { scroll-behavior: smooth; }
 .header-content h1 { font-size: 2.5rem; color: #333399; margin-bottom: 10px; }
 .header-content p { font-size: 1.2rem; color: #666; }
 
-/* ---------- 生活记录 ---------- */
-.life-content { padding: 40px; background-color: #f5f5f5; }
-.life-grid {
-  max-width: 1200px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 20px; padding: 20px;
-}
-.life-item {
-  background: #ffffff; border-radius: 12px; overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
-}
-.life-item:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
-.life-item img {
-  width: 100%; height: 200px; object-fit: cover;
-  transition: transform 0.3s ease; cursor: pointer;
-}
-.life-item:hover img { transform: scale(1.05); }
-.life-item-info {
-  padding: 15px;
-  background: linear-gradient(to bottom, #ffffff 0%, #f8f8f8 100%);
-}
-.life-item-info h3 { font-size: 1.1rem; color: #000000; margin-bottom: 8px; font-weight: 600; }
-.life-item-info p { color: #666; font-size: 0.9rem; }
-.life-item-info .description {
-  color: #666; font-size: 0.95rem; line-height: 1.5;
-  margin-top: 10px; font-style: italic;
+/* ============ 生活记录 · 模块化布局 ============ */
+.life-content {
+  padding: 40px 20px;
+  background-color: #f5f5f5;
 }
 
-.life-category {
-  position: relative; max-width: 1200px;
-  margin: 0 auto 30px; padding: 0 20px; text-align: left;
+.life-section {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
-.life-category:not(:first-child) { margin-top: 80px; padding-top: 40px; }
-.life-category:not(:first-child)::before {
-  content: ''; position: absolute; top: 0; left: 50%;
-  transform: translateX(-50%); width: 100px; height: 2px; background-color: #e0e0e0;
-}
-.life-category h2 {
-  font-size: 2rem; color: #000000; margin-bottom: 10px;
-  font-weight: 600; position: relative; display: inline-block;
-}
-.life-category h2::after {
-  content: ''; position: absolute; bottom: -5px; left: 0;
-  width: 100%; height: 3px; background-color: #333399; border-radius: 2px;
-}
-.life-category p { color: #666; font-size: 1.1rem; font-style: italic; }
 
-.life-subcategory {
-  max-width: 1200px; margin: 40px auto 20px;
-  padding: 0 20px; text-align: left; position: relative;
+.life-section-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #eef0ff;
+  text-align: left;
 }
-.life-subcategory::before {
-  content: ''; position: absolute; left: 20px; top: 50%;
-  width: 3px; height: 20px; background-color: #333399;
-  transform: translateY(-50%);
-}
-.life-subcategory h3 { font-size: 1.5rem; color: #333; margin-bottom: 5px; padding-left: 15px; }
-.life-subcategory p { color: #666; font-size: 1rem; padding-left: 15px; }
 
+.life-section-header h2 {
+  font-size: 1.6rem;
+  color: #333399;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.life-section-header p {
+  font-size: 1rem;
+  color: #888;
+  font-style: italic;
+}
+
+/* 子章节 */
+.life-subsections {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.life-subsection-header {
+  margin-bottom: 20px;
+  padding-left: 15px;
+  border-left: 4px solid #333399;
+}
+
+.life-subsection-header h3 {
+  font-size: 1.25rem;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.life-subsection-header p {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+/* 照片网格 */
+/* ============ 生活记录 · 照片卡片 ============ */
+.life-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: start;   /* 卡片高度按内容自适应，不强行拉齐 */
+}
+
+.life-photo {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #eef0ff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.life-photo:not(.no-image) {
+  cursor: pointer;
+}
+
+.life-photo:not(.no-image):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(51, 51, 153, 0.15);
+}
+
+/* 图片区 */
+.life-photo-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.life-photo-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.life-photo:not(.no-image):hover .life-photo-img img {
+  transform: scale(1.05);
+}
+
+/* 文字区 */
+.life-photo-caption {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.life-photo-caption h4 {
+  font-size: 0.95rem;
+  color: #333399;
+  font-weight: 600;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.life-photo-date {
+  font-size: 0.78rem;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.life-photo-desc {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.55;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;   /* 最多显示 3 行，超出省略号 */
+  -webkit-box-orient: vertical;
+}
+
+/* 无图卡片：淡淡的背景，视觉区分 */
+.life-photo.no-image {
+  background: linear-gradient(135deg, #fafbff 0%, #eef0ff 100%);
+  border-color: #e0e4ff;
+}
+
+.life-photo.no-image .life-photo-caption {
+  padding: 18px 16px;
+}
+
+.life-photo.no-image .life-photo-desc {
+  -webkit-line-clamp: 6;   /* 无图时描述可以显示更多行 */
+}
+
+/* 移动端 */
+@media (max-width: 768px) {
+  .life-photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .life-photo-caption {
+    padding: 10px 12px;
+  }
+  .life-photo-caption h4 {
+    font-size: 0.85rem;
+  }
+  .life-photo-date {
+    font-size: 0.7rem;
+    margin-bottom: 6px;
+  }
+  .life-photo-desc {
+    font-size: 0.75rem;
+    line-height: 1.45;
+    -webkit-line-clamp: 2;
+  }
+  .life-photo.no-image .life-photo-caption {
+    padding: 14px 12px;
+  }
+  .life-photo.no-image .life-photo-desc {
+    -webkit-line-clamp: 4;
+  }
+}
+
+/* 移动端 */
+@media (max-width: 768px) {
+  .life-content {
+    padding: 20px 12px;
+  }
+  .life-section {
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+  }
+  .life-section-header h2 {
+    font-size: 1.15rem;
+  }
+  .life-section-header p {
+    font-size: 0.85rem;
+  }
+  .life-subsection-header h3 {
+    font-size: 1rem;
+  }
+  .life-subsection-header p {
+    font-size: 0.8rem;
+  }
+  .life-subsections {
+    gap: 25px;
+  }
+  .life-photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .life-photo-text {
+    padding: 12px;
+  }
+  .life-photo-text h4 {
+    font-size: 0.85rem;
+  }
+  .life-photo-date {
+    font-size: 0.7rem;
+    margin-bottom: 6px;
+  }
+  .life-photo-desc {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    -webkit-line-clamp: 3;
+  }
+}
 /* ---------- 作品/项目卡片 ---------- */
 .portfolio-content { padding: 40px; background-color: #f5f5f5; min-height: 60vh; }
 .portfolio-grid {
