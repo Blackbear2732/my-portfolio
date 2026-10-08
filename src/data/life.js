@@ -53,20 +53,6 @@ export const lifeSections = [
     ]
   },
   {
-    id: 'beijing',
-    title: '2024年10月1日至10月5日 · 北京游',
-    subtitle: '国庆假期，漫步古都，感受历史文化的魅力',
-    timeline: { date: '2024.10', title: '北京游' },
-    items: [
-      { src: 'image/life/beijing/beijing-01.jpg', title: '天安门夜景', date: '2024年10月1日', desc: '华灯初上，金碧辉煌的城楼在夜色中愈发庄严肃穆。' },
-      { src: 'image/life/beijing/beijing-02.jpg', title: '圆明园遗址', date: '2024年10月1日', desc: '昔日皇家园林的遗迹，诉说着历史的沧桑与警示。' },
-      { src: 'image/life/beijing/beijing-03.jpg', title: '万里长城', date: '2024年10月2日', desc: '蜿蜒于山脉之巅，展现着中华民族的伟大智慧与气魄。' },
-      { src: 'image/life/beijing/beijing-04.jpg', title: '天坛', date: '2024年10月4日', desc: '明清两代帝王祭天的场所，中国现存规模最大的古代祭祀建筑群。' },
-      { src: 'image/life/beijing/beijing-05.jpg', title: '天安门广场', date: '2024年10月4日', desc: '象征着新中国的心脏，见证了无数历史时刻的庄严广场。' },
-      { src: 'image/life/beijing/beijing-06.jpg', title: '北京大学', date: '2024年10月4日', desc: '百年学府的精神象征，静谧优雅的未名湖映照着燕园的文化底蕴。' }
-    ]
-  },
-  {
     id: 'wuyue',
     title: '2024年8月7日至8月15日 · 五岳挑战',
     subtitle: '追寻华夏五岳，挑战自我极限的壮举之旅',
@@ -134,6 +120,21 @@ export const lifeSections = [
       }
     ]
   },
+  {
+    id: 'beijing',
+    title: '2024年10月1日至10月5日 · 北京游',
+    subtitle: '国庆假期，漫步古都，感受历史文化的魅力',
+    timeline: { date: '2024.10', title: '北京游' },
+    items: [
+      { src: 'image/life/beijing/beijing-01.jpg', title: '天安门夜景', date: '2024年10月1日', desc: '华灯初上，金碧辉煌的城楼在夜色中愈发庄严肃穆。' },
+      { src: 'image/life/beijing/beijing-02.jpg', title: '圆明园遗址', date: '2024年10月1日', desc: '昔日皇家园林的遗迹，诉说着历史的沧桑与警示。' },
+      { src: 'image/life/beijing/beijing-03.jpg', title: '万里长城', date: '2024年10月2日', desc: '蜿蜒于山脉之巅，展现着中华民族的伟大智慧与气魄。' },
+      { src: 'image/life/beijing/beijing-04.jpg', title: '天坛', date: '2024年10月4日', desc: '明清两代帝王祭天的场所，中国现存规模最大的古代祭祀建筑群。' },
+      { src: 'image/life/beijing/beijing-05.jpg', title: '天安门广场', date: '2024年10月4日', desc: '象征着新中国的心脏，见证了无数历史时刻的庄严广场。' },
+      { src: 'image/life/beijing/beijing-06.jpg', title: '北京大学', date: '2024年10月4日', desc: '百年学府的精神象征，静谧优雅的未名湖映照着燕园的文化底蕴。' }
+    ]
+  },
+
   // ==================== 成都之旅 ====================
   {
     id: 'chengdu',
