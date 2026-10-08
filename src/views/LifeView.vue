@@ -19,7 +19,17 @@
 
       <div v-if="section.items" class="life-grid">
         <div v-for="(item, i) in section.items" :key="i" class="life-item">
-          <img :src="asset(item.src)" :alt="item.title" @click="openImage(item)" />
+          <img
+              v-if="item.src"
+              :src="asset(item.src)"
+              :alt="item.title"
+              loading="lazy"
+              decoding="async"
+              @click="openImage(item)"
+          />
+          <div v-else class="life-item-noimg">
+            <i class="fas fa-pen-fancy"></i>
+          </div>
           <div class="life-item-info">
             <h3>{{ item.title }}</h3>
             <p>{{ item.date }}</p>
@@ -36,7 +46,17 @@
           </div>
           <div class="life-grid">
             <div v-for="(item, i) in sub.items" :key="i" class="life-item">
-              <img :src="asset(item.src)" :alt="item.title" @click="openImage(item)" />
+              <img
+                  v-if="item.src"
+                  :src="asset(item.src)"
+                  :alt="item.title"
+                  loading="lazy"
+                  decoding="async"
+                  @click="openImage(item)"
+              />
+              <div v-else class="life-item-noimg">
+                <i class="fas fa-pen-fancy"></i>
+              </div>
               <div class="life-item-info">
                 <h3>{{ item.title }}</h3>
                 <p>{{ item.date }}</p>

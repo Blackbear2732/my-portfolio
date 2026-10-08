@@ -1,5 +1,25 @@
 export const lifeSections = [
+  // ==================== 平遥古城 ====================
+  {
+    id: 'pingyao',
+    title: '2024年5月1日 · 平遥古城',
+    subtitle: '明清古城的时光标本',
+    timeline: { date: '2024.05', title: '平遥古城' },
+    items: [
+      { title: '平遥古城', date: '2024年5月1日', desc: '待补充。' }
+    ]
+  },
 
+  // ==================== 晋中绵山 ====================
+  {
+    id: 'mianshan',
+    title: '2024年6月10日 · 晋中绵山',
+    subtitle: '寒食清明之源，介子推隐居之地',
+    timeline: { date: '2024.06', title: '绵山' },
+    items: [
+      { title: '绵山', date: '2024年6月10日', desc: '待补充。' }
+    ]
+  },
   {
     id: 'qingdao',
     title: '2024年7月31日至8月4日 · 青岛游',
@@ -114,6 +134,40 @@ export const lifeSections = [
       }
     ]
   },
+  // ==================== 成都之旅 ====================
+  {
+    id: 'chengdu',
+    title: '2025年7月20日至7月21日 · 成都之旅',
+    subtitle: '拜水都江堰，问道三星堆，触摸古蜀文明与千年水利工程',
+    timeline: {
+      date: '2025.07',
+      title: '成都游',
+      children: [
+        { id: 'dujiangyan', title: '都江堰' },
+        { id: 'sanxingdui', title: '三星堆' }
+      ]
+    },
+    subSections: [
+      {
+        id: 'dujiangyan',
+        title: '都江堰',
+        date: '2025年7月20日',
+        items: [
+          { src: 'image/life/chengdu/dujiangyan-01.jpg', title: '都江堰', date: '2025年7月20日', desc: '战国时期李冰父子主持修建，两千多年来仍在灌溉成都平原，世界水利文化的鼻祖。' },
+          { src: 'image/life/chengdu/dujiangyan-02.jpg', title: '鱼嘴分水堤', date: '2025年7月20日', desc: '岷江在此被分为内外两江，四六分水、二八排沙，古人智慧令人叹服。' }
+        ]
+      },
+      {
+        id: 'sanxingdui',
+        title: '三星堆博物馆',
+        date: '2025年7月21日',
+        items: [
+          { src: 'image/life/chengdu/sanxingdui-01.jpg', title: '青铜神树', date: '2025年7月21日', desc: '高达近四米的青铜神树，古蜀人通天宇宙观的具象表达。' },
+          { src: 'image/life/chengdu/sanxingdui-02.jpg', title: '青铜大立人', date: '2025年7月21日', desc: '两米余高的青铜大立人像，双手环握，至今身份成谜。' }
+        ]
+      }
+    ]
+  },
 
 
 
@@ -138,8 +192,9 @@ export const lifeSections = [
         title: '大理古城',
         date: '2025年7月25日',
         items: [
-          { src: 'image/yunnan/dali-01.jpg', title: '大理古城', date: '2025年7月25日', desc: '苍山脚下，洱海之滨，古城的青石板路诉说着千年故事。' },
-          { src: 'image/yunnan/dali-02.jpg', title: '人民路', date: '2025年7月25日', desc: '文艺小店与手作摊位林立，是大理最有烟火气的一条街。' }
+          { src: 'image/life/yunnan/dali-01.jpg', title: '大理古城', date: '2025年7月25日', desc: '苍山脚下，洱海之滨，古城的青石板路诉说着千年故事。' },
+          { src: 'image/life/yunnan/dali-02.jpg', title: '人民路', date: '2025年7月25日', desc: '文艺小店与手作摊位林立，是大理最有烟火气的一条街。' },
+          { src: 'image/life/yunnan/dali-03.jpg', title: '洱海', date: '2025年7月25日', desc: '洱海不是海，却比海更温柔。苍山十九峰将它揽在怀中，风从水面吹来，带着水草的清甜。' }
         ]
       },
       {
@@ -147,8 +202,8 @@ export const lifeSections = [
         title: '丽江古城',
         date: '2025年7月28日',
         items: [
-          { src: 'image/yunnan/lijiang-01.jpg', title: '丽江古城', date: '2025年7月28日', desc: '南门街宝屋巷，纳西族建筑错落有致，小桥流水人家。' },
-          { src: 'image/yunnan/lijiang-02.jpg', title: '古城夜色', date: '2025年7月28日', desc: '华灯初上，四方街的喧嚣与酒吧街的歌声交织。' }
+          { title: '丽江古城', date: '2025年7月28日', desc: '南门街宝屋巷，纳西族建筑错落有致，小桥流水人家。' },
+          { title: '古城夜色', date: '2025年7月28日', desc: '华灯初上，四方街的喧嚣与酒吧街的歌声交织。' }
         ]
       },
       {
@@ -156,8 +211,8 @@ export const lifeSections = [
         title: '西双版纳 · 景洪',
         date: '2025年7月31日',
         items: [
-          { src: 'image/yunnan/xishuangbanna-01.jpg', title: '景洪街头', date: '2025年7月31日', desc: '热带雨林气候下的边陲城市，棕榈树与佛寺随处可见。' },
-          { src: 'image/yunnan/xishuangbanna-02.jpg', title: '湄公河畔', date: '2025年7月31日', desc: '澜沧江—湄公河穿城而过，夕阳下的江面金光粼粼。' }
+          { title: '景洪街头', date: '2025年7月31日', desc: '热带雨林气候下的边陲城市，棕榈树与佛寺随处可见。' },
+          { title: '湄公河畔', date: '2025年7月31日', desc: '澜沧江—湄公河穿城而过，夕阳下的江面金光粼粼。' }
         ]
       },
       {
@@ -165,8 +220,7 @@ export const lifeSections = [
         title: '昆明',
         date: '2025年8月1日',
         items: [
-          { src: 'image/yunnan/xishuangbanna-01.jpg', title: '景洪街头', date: '2025年7月31日', desc: '热带雨林气候下的边陲城市，棕榈树与佛寺随处可见。' },
-          { src: 'image/yunnan/xishuangbanna-02.jpg', title: '湄公河畔', date: '2025年7月31日', desc: '澜沧江—湄公河穿城而过，夕阳下的江面金光粼粼。' }
+          { title: '昆明', date: '2025年8月1日', desc: '待补充。' }
         ]
       }
     ]
@@ -184,8 +238,8 @@ export const lifeSections = [
         title: '深圳 · 南山',
         date: '2025年8月16日',
         items: [
-          { src: 'image/dawanqu/shenzhen-01.jpg', title: '深圳南山', date: '2025年8月16日', desc: '侨城西街一带，改革开放前沿的现代都市风貌。' },
-          { src: 'image/dawanqu/shenzhen-02.jpg', title: '城市夜景', date: '2025年8月16日', desc: '高楼林立，霓虹闪烁，科技之都的夜晚从不眠。' }
+          {  title: '深圳南山', date: '2025年8月16日', desc: '侨城西街一带，改革开放前沿的现代都市风貌。' },
+          {  title: '城市夜景', date: '2025年8月16日', desc: '高楼林立，霓虹闪烁，科技之都的夜晚从不眠。' }
         ]
       },
       {
@@ -193,10 +247,20 @@ export const lifeSections = [
         title: '香港 · 油麻地',
         date: '2025年8月19日',
         items: [
-          { src: 'image/dawanqu/hongkong-01.jpg', title: '香港油麻地', date: '2025年8月19日', desc: '弥敦道上，霓虹招牌与老唐楼并存，最地道的香港烟火气。' },
-          { src: 'image/dawanqu/hongkong-02.jpg', title: '维港天际', date: '2025年8月19日', desc: '从九龙望向港岛，维多利亚港两岸的天际线尽收眼底。' }
+          { title: '香港油麻地', date: '2025年8月19日', desc: '弥敦道上，霓虹招牌与老唐楼并存，最地道的香港烟火气。' },
+          { title: '维港天际', date: '2025年8月19日', desc: '从九龙望向港岛，维多利亚港两岸的天际线尽收眼底。' }
         ]
       }
+    ]
+  },
+  // ==================== 朔州崇福寺 ====================
+  {
+    id: 'shuozhou',
+    title: '2025年10月2日 · 朔州崇福寺',
+    subtitle: '金代建筑瑰宝，朔州千年古刹',
+    timeline: { date: '2025.10', title: '朔州崇福寺' },
+    items: [
+      { title: '崇福寺', date: '2025年10月2日', desc: '待补充。' }
     ]
   },
 
@@ -207,9 +271,9 @@ export const lifeSections = [
     subtitle: '漫步古城老街，品味晋北风味',
     timeline: { date: '2026.05', title: '忻州古城' },
     items: [
-      { src: 'image/xinzhou/xinzhou-01.jpg', title: '忻州古城', date: '2026年5月4日', desc: '秀容街上，青砖灰瓦、飞檐翘角，重现古城风貌。' },
-      { src: 'image/xinzhou/xinzhou-02.jpg', title: '南北大街', date: '2026年5月4日', desc: '古街两侧店铺林立，忻州凉皮、手擀面等地方美食香气扑鼻。' },
-      { src: 'image/xinzhou/xinzhou-03.jpg', title: '忻府区街景', date: '2026年5月3日', desc: '光明街一带，新旧交融，感受这座城市的日常生活节奏。' }
+      { title: '忻州古城', date: '2026年5月4日', desc: '秀容街上，青砖灰瓦、飞檐翘角，重现古城风貌。' },
+      { title: '南北大街', date: '2026年5月4日', desc: '古街两侧店铺林立，忻州凉皮、手擀面等地方美食香气扑鼻。' },
+      { title: '忻府区街景', date: '2026年5月3日', desc: '光明街一带，新旧交融，感受这座城市的日常生活节奏。' }
     ]
   },
   // ==================== 太原晋祠 ====================
@@ -219,9 +283,9 @@ export const lifeSections = [
     subtitle: '国庆假期，探访三晋名胜，感受千年祠堂园林之美',
     timeline: { date: '2026.10', title: '太原晋祠' },
     items: [
-      { src: 'image/taiyuan/jinci-01.jpg', title: '晋祠圣母殿', date: '2026年10月6日', desc: '晋祠主殿圣母殿，北宋建筑杰作，殿内宋塑侍女像神态各异。' },
-      { src: 'image/taiyuan/jinci-02.jpg', title: '鱼沼飞梁', date: '2026年10月6日', desc: '十字形古桥架于鱼沼之上，中国现存古桥中的孤例。' },
-      { src: 'image/taiyuan/jinci-03.jpg', title: '难老泉', date: '2026年10月6日', desc: '晋水源头，泉水长年不息，被誉为"晋阳第一泉"。' }
+      { title: '晋祠圣母殿', date: '2026年10月6日', desc: '晋祠主殿圣母殿，北宋建筑杰作，殿内宋塑侍女像神态各异。' },
+      { title: '鱼沼飞梁', date: '2026年10月6日', desc: '十字形古桥架于鱼沼之上，中国现存古桥中的孤例。' },
+      { title: '难老泉', date: '2026年10月6日', desc: '晋水源头，泉水长年不息，被誉为"晋阳第一泉"。' }
     ]
   }
 ]
