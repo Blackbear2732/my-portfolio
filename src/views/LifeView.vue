@@ -1,4 +1,7 @@
 <template>
+
+  <div class="page-life">
+
   <section class="page-header">
     <div class="header-content">
       <i class="fas fa-camera"></i>
@@ -64,6 +67,8 @@
         >{{ child.title }}</div>
       </div>
     </div>
+  </div>
+
   </div>
 </template>
 

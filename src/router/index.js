@@ -11,5 +11,12 @@ const routes = [
 export default createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior: () => ({ top: 0 })
+  scrollBehavior(to, from, savedPosition) {
+    return new Promise((resolve) => {
+      // 等过渡动画完成后再滚动，时长和 CSS 里的 transition 一致
+      setTimeout(() => {
+        resolve(savedPosition || { top: 0 })
+      }, 250)
+    })
+  }
 })

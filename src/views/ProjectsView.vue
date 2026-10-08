@@ -1,4 +1,7 @@
 <template>
+
+  <div class="page-projects">
+
   <section class="page-header">
     <div class="header-content">
       <i class="fas fa-laptop-code"></i>
@@ -34,6 +37,9 @@
       <span>返回首页</span>
     </router-link>
   </div>
+
+    </div>
+
 </template>
 
 <script setup>

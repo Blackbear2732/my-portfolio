@@ -1,4 +1,6 @@
 <template>
+  <div class="page-home">
+
   <section class="profile-section">
     <div class="profile-container">
       <div class="profile-avatar">
@@ -174,7 +176,7 @@
     </div>
   </div>
 
-
+  </div>
 </template>
 
 <script setup>

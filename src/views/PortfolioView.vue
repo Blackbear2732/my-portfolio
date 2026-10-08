@@ -1,4 +1,7 @@
 <template>
+
+  <div class="page-portfolio">
+
   <section class="page-header">
     <div class="header-content">
       <i class="fas fa-award"></i>
@@ -34,6 +37,9 @@
       <img :src="asset(certSrc)" alt="证明"/>
     </div>
   </Teleport>
+
+  </div>
+
 </template>
 
 <script setup>
