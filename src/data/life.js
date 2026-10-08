@@ -112,5 +112,85 @@ export const lifeSections = [
         ]
       }
     ]
+  },
+
+
+
+  // ==================== 云南之旅 ====================
+  {
+    id: 'yunnan',
+    title: '2025年7月25日至7月31日 · 云南之旅',
+    subtitle: '苍山洱海、古城慢时光，西南边陲的夏日记忆',
+    timeline: { date: '2025.07', title: '云南游' },
+    subSections: [
+      {
+        id: 'dali',
+        title: '大理古城',
+        date: '2025年7月25日',
+        items: [
+          { src: 'image/yunnan/dali-01.jpg', title: '大理古城', date: '2025年7月25日', desc: '苍山脚下，洱海之滨，古城的青石板路诉说着千年故事。' },
+          { src: 'image/yunnan/dali-02.jpg', title: '人民路', date: '2025年7月25日', desc: '文艺小店与手作摊位林立，是大理最有烟火气的一条街。' }
+        ]
+      },
+      {
+        id: 'lijiang',
+        title: '丽江古城',
+        date: '2025年7月28日',
+        items: [
+          { src: 'image/yunnan/lijiang-01.jpg', title: '丽江古城', date: '2025年7月28日', desc: '南门街宝屋巷，纳西族建筑错落有致，小桥流水人家。' },
+          { src: 'image/yunnan/lijiang-02.jpg', title: '古城夜色', date: '2025年7月28日', desc: '华灯初上，四方街的喧嚣与酒吧街的歌声交织。' }
+        ]
+      },
+      {
+        id: 'xishuangbanna',
+        title: '西双版纳 · 景洪',
+        date: '2025年7月31日',
+        items: [
+          { src: 'image/yunnan/xishuangbanna-01.jpg', title: '景洪街头', date: '2025年7月31日', desc: '热带雨林气候下的边陲城市，棕榈树与佛寺随处可见。' },
+          { src: 'image/yunnan/xishuangbanna-02.jpg', title: '湄公河畔', date: '2025年7月31日', desc: '澜沧江—湄公河穿城而过，夕阳下的江面金光粼粼。' }
+        ]
+      }
+    ]
+  },
+
+  // ==================== 粤港澳大湾区之旅 ====================
+  {
+    id: 'dawanqu',
+    title: '2025年8月16日至8月19日 · 粤港澳大湾区之旅',
+    subtitle: '从深圳到香港，感受大湾区城市的活力与多元',
+    timeline: { date: '2025.08', title: '大湾区游' },
+    subSections: [
+      {
+        id: 'shenzhen',
+        title: '深圳 · 南山',
+        date: '2025年8月16日',
+        items: [
+          { src: 'image/dawanqu/shenzhen-01.jpg', title: '深圳南山', date: '2025年8月16日', desc: '侨城西街一带，改革开放前沿的现代都市风貌。' },
+          { src: 'image/dawanqu/shenzhen-02.jpg', title: '城市夜景', date: '2025年8月16日', desc: '高楼林立，霓虹闪烁，科技之都的夜晚从不眠。' }
+        ]
+      },
+      {
+        id: 'hongkong',
+        title: '香港 · 油麻地',
+        date: '2025年8月19日',
+        items: [
+          { src: 'image/dawanqu/hongkong-01.jpg', title: '香港油麻地', date: '2025年8月19日', desc: '弥敦道上，霓虹招牌与老唐楼并存，最地道的香港烟火气。' },
+          { src: 'image/dawanqu/hongkong-02.jpg', title: '维港天际', date: '2025年8月19日', desc: '从九龙望向港岛，维多利亚港两岸的天际线尽收眼底。' }
+        ]
+      }
+    ]
+  },
+
+  // ==================== 忻州古城之旅 ====================
+  {
+    id: 'xinzhou',
+    title: '2026年5月3日至5月4日 · 忻州古城之旅',
+    subtitle: '漫步古城老街，品味晋北风味',
+    timeline: { date: '2026.05', title: '忻州古城' },
+    items: [
+      { src: 'image/xinzhou/xinzhou-01.jpg', title: '忻州古城', date: '2026年5月4日', desc: '秀容街上，青砖灰瓦、飞檐翘角，重现古城风貌。' },
+      { src: 'image/xinzhou/xinzhou-02.jpg', title: '南北大街', date: '2026年5月4日', desc: '古街两侧店铺林立，忻州凉皮、手擀面等地方美食香气扑鼻。' },
+      { src: 'image/xinzhou/xinzhou-03.jpg', title: '忻府区街景', date: '2026年5月3日', desc: '光明街一带，新旧交融，感受这座城市的日常生活节奏。' }
+    ]
   }
 ]
