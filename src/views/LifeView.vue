@@ -69,34 +69,72 @@
     </template>
   </section>
 
-  <div class="timeline-nav">
-    <div
-      v-for="section in lifeSections"
-      :key="section.id"
-      class="timeline-item"
-      @click="scrollTo(section.id)"
-    >
-      <span class="timeline-date">{{ section.timeline.date }}</span>
-      <span class="timeline-title">{{ section.timeline.title }}</span>
-      <div v-if="section.timeline.children" class="timeline-subitems">
-        <div
-          v-for="child in section.timeline.children"
-          :key="child.id"
-          class="timeline-subitem"
-          @click.stop="scrollTo(child.id)"
-        >{{ child.title }}</div>
+    <div class="timeline-nav">
+      <div
+          v-for="(sections, year) in timelineByYear"
+          :key="year"
+          class="timeline-year"
+      >
+        <div class="timeline-year-label" @click="toggleYear(year)">
+          <span>{{ year }}</span>
+          <i :class="activeYear === year ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
+        </div>
+        <div v-show="activeYear === year" class="timeline-year-items">
+          <div
+              v-for="item in sections"
+              :key="item.id"
+              class="timeline-item"
+              @click="scrollTo(item.id)"
+          >
+            <span class="timeline-date">{{ item.month }}月</span>
+            <span class="timeline-title">{{ item.title }}</span>
+            <div v-if="item.children" class="timeline-subitems">
+              <div
+                  v-for="child in item.children"
+                  :key="child.id"
+                  class="timeline-subitem"
+                  @click.stop="scrollTo(child.id)"
+              >{{ child.title }}</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
 
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed,ref } from 'vue'
 import { lifeSections } from '@/data/life'
 import { asset } from '@/utils/asset'
 import { uiActions } from '@/store/ui'
+
+
+// 按年份聚合
+const timelineByYear = computed(() => {
+  const map = {}
+  lifeSections.forEach((section) => {
+    const year = section.timeline.date.split('.')[0]
+    if (!map[year]) map[year] = []
+    map[year].push({
+      id: section.id,
+      month: section.timeline.date.split('.')[1],
+      title: section.timeline.title,
+      children: section.timeline.children
+    })
+  })
+  return map
+})
+
+const activeYear = ref(null)  // 当前展开的年份
+
+function toggleYear(year) {
+  activeYear.value = activeYear.value === year ? null : year
+}
+
+
+
 
 // 把所有照片拍平成一个数组，用于查看器左右切换
 const allItems = computed(() => {
