@@ -1,0 +1,780 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Search><pages Count="18"><page Index="1"><![CDATA[软件学院
+实训项目文档
+
+实训项目： 建筑可阅读导览系统
+
+班 级：     软件 2305z 班
+学 号：  20231614308
+
+姓 名：  张钧益
+
+上课时间：2026.09.1 ——2026.09.28
+
+      实训教师 (签名)
+      辅导教师 (签名)]]></page><page Index="2"><![CDATA[山西农业大学软件工程专业实训软件开发设计文档
+
+                                    目录
+
+      1.软件需求分析 -------------------------------------------------------- 3
+          1.1 综合描述 --------------------------------------------------------- 3
+                1.1.1 产品的功能 ------------------------------------------------- 3
+                1.1.2 用户类和特性 ----------------------------------------------- 3
+                1.1.3 运行环境 --------------------------------------------------- 4
+                1.1.4 设计和实现上的限制 ----------------------------------------- 4
+          1.2 外部接口需求 ----------------------------------------------------- 4
+                1.2.1 用户界面 --------------------------------------------------- 4
+                1.2.2 硬件接口 --------------------------------------------------- 4
+                1.2.3 软件接口 --------------------------------------------------- 4
+                1.2.4 通讯接口 --------------------------------------------------- 5
+          1.3 系统功能需求 ----------------------------------------------------- 5
+          1.4 其它非功能需求 --------------------------------------------------- 6
+                1.4.1 性能需求 --------------------------------------------------- 6
+                1.4.2 安全措施需求 ----------------------------------------------- 6
+                1.4.3 安全性需求 ------------------------------------------------- 6
+                1.4.4 软件质量属性 ----------------------------------------------- 6
+                1.4.5 业务规则 --------------------------------------------------- 6
+          1.5 分析模型 --------------------------------------------------------- 7
+
+     2.软件概要设计 --------------------------------------------------------- 7
+          2.1 设计概述 --------------------------------------------------------- 7
+          2.2 系统逻辑设计 ----------------------------------------------------- 7
+          2.3 数据库设计 ------------------------------------------------------- 8
+
+     3.软件详细设计 --------------------------------------------------------- 9
+          3.1 界面设计 --------------------------------------------------------- 9
+          3.2 过程设计 -------------------------------------------------------- 10
+
+     4.软件实现 ------------------------------------------------------------ 11
+          4.1 程序设计语言的选择 ---------------------------------------------- 11
+          4.2 编码风格说明 ---------------------------------------------------- 11
+          4.3 详细实现过程及代码 ---------------------------------------------- 12
+
+     心得体会 -------------------------------------------------------------- 17
+
+2]]></page><page Index="3"><![CDATA[张钧益：建筑可阅读导览系统
+
+1.软件需求分析
+
+1.1 综合描述
+
+      本系统为基于若依（RuoYi）框架开发的 travel 文旅模块，包含后台管理端与微信小
+程序端。后台管理端用于景点、分类、栏目、轮播图、封面图、识别库、VR、历史人物、
+视频、活动等数据的管理；小程序端面向游客，提供景点列表、附近景点、景点详情、拍
+照识别、活动浏览、视频观看、历史人物查看等功能。系统采用前后端分离架构，后端提
+供 RESTful 接口，前端通过 HTTP 请求交互。
+1.1.1 产品的功能
+
+      整体实现了 travel 文旅模块的核心业务功能：
+      景点管理：后台可新增、修改、删除、分页查询景点，支持按名称、分类、状态筛选；
+小程序端可查看景点列表、附近景点、按名称搜索、按分类查询、查看景点详情。
+      分类与栏目管理：后台维护二级分类和栏目（模块），景点可关联多个分类。轮播图与
+封面图管理：后台维护首页轮播图和拍照/阅读封面图，小程序端随机获取轮播背景、按类
+型获取封面图。
+      识别库管理：后台可上传图片至百度 AI 相似图库，支持列表查询、入库、删除；小
+程序端拍照识别时调用百度 AI 搜索，返回匹配景点或推荐景点。
+      VR 管理：后台维护 VR 资源，景点可关联 VR，小程序端在景点详情中展示 VR 链接。
+      历史人物管理：后台维护历史人物信息，景点可关联历史人物，小程序端展示人物详
+情。
+      视频管理：后台维护宣传视频，小程序端可查看视频列表和详情。
+      活动管理：后台维护活动，小程序端展示活动列表和活动详情。
+      数据统计：后台看板展示基础数据、识别排行、VR 查看排行、热门排行、景点访问量、
+小时访问量、终端/性别分布等。
+      浏览量埋点：小程序端在进入首页、景点详情、VR 页面时上报访问事件。
+      文件上传：后台支持图片、音频、视频等文件上传，保存至本地或云存储。
+1.1.2 用户类和特性
+      后台管理员：登录后台管理系统，拥有对景点、分类、栏目、轮播图、封面图、识别
+库、VR、历史人物、视频、活动等数据的增删改查权限。界面友好，操作便捷，支持分页、
+搜索、图片上传。
+      小程序游客：无需登录即可浏览景点列表、附近景点、活动、视频、历史人物等；拍
+照识别和浏览量上报需要微信登录获取 token。界面适配移动端，支持中英文切换，支持
+VR 跳转。
+
+                                                                                                                                                           3]]></page><page Index="4"><![CDATA[山西农业大学软件工程专业实训软件开发设计文档
+
+1.1.3 运行环境
+      后端运行于 Windows 或 Linux 系统，需要 JDK 1.8、MySQL 5.7、Redis、Maven、
+
+Spring Boot 2.x 和若依框架 3.x。前端后台运行于 Node.js 环境，使用 Vue 2.x、
+Element UI 和 Axios。小程序端使用微信开发者工具和微信小程序基础库。开发工具包
+括 IntelliJ IDEA 或 Eclipse、VS Code、Navicat。云服务方面，系统依赖百度 AI 图
+像搜索，文件存储可选阿里云 OSS、华为云 OBS 或本地文件存储。
+1.1.4 设计和实现上的限制
+
+      本系统必须遵循若依框架的分层规范，即 Controller 层、Service 层、Mapper 层和
+数据库层。接口路径、请求方法、参数名和返回结构必须与前端约定一致，例如
+/travel/backstage/search、/travelVideo/list、/activ/list 等。主键统一使用雪花 ID，
+由后端 IdWorker 生成，除 travel_vr 表自增外，其余表均不使用数据库自增。分页使
+用 PageHelper ， 列 表 接 口 返 回 TableDataInfo ， 单 对 象 返 回 AjaxResult 或
+CommonResult。文件上传需要兼容本地存储和云存储，识别库入库需要调用百度 AI 接口。
+小程序端 token 鉴权使用 Authorization 头，后台管理端使用 Bearer 前缀。
+
+1.2 外部接口需求
+
+1.2.1 用户界面
+      后台管理端：基于 Vue + Element UI，左侧菜单导航，右侧内容区。景点管理页包含
+
+搜索栏、表格、分页、新增/编辑弹窗、图片上传组件。识别库管理页以图片墙形式展示，
+支持上传、删除。轮播图、封面图、VR、历史人物、视频、活动等页面均为标准表格 + 弹
+窗表单。
+
+      小程序端：首页展示轮播图、活动入口、景点推荐；景点列表页支持分类 tab、附近、
+搜索；景点详情页展示图片、富文本介绍、音频、VR 入口、历史人物、相关景点；拍照识
+别页调用相机上传图片，展示识别结果或推荐列表；视频页展示视频列表和播放详情；历
+史人物页展示人物信息。
+1.2.2 硬件接口
+
+      无特殊硬件接口，仅依赖服务器、数据库服务器、网络设备。小程序端使用手机摄像
+头拍照上传。
+1.2.3 软件接口
+
+      百度 AI 图像搜索：用于识别库入库（similarAdd/similarAddUrl）和拍照识别
+（similarSearch）、删除（similarDeleteBySign）。
+
+      微信小程序登录：调用微信 jscode2session 接口获取 openid、sessionKey。
+      微信手机号解密：调用微信 getPhoneNumber 接口解密手机号。
+      文件上传：本地存储使用 RuoYiConfig.getUploadPath()，云存储可选阿里云 OSS、
+华为云 OBS。
+      数据库：MySQL 5.7，通过 MyBatis / tk.mybatis 访问。
+
+4]]></page><page Index="5"><![CDATA[张钧益：建筑可阅读导览系统
+
+      缓存：Redis 用于 token、验证码等（若依框架自带）。
+1.2.4 通讯接口
+
+前端与后端通过 HTTP/HTTPS 通信，数据格式为 JSON。
+
+文件上传使用 multipart/form-data。
+
+小程序端请求头                      Content-Type: application/x-www-form-
+
+urlencoded;charset=utf-8（普通请求）或 multipart/form-data（上传）。
+
+后台管理端请求头 Content-Type: application/json ，Authorization: Bearer
+
+{token}。
+
+小程序端请求头 Authorization: {token}（不带 Bearer）。
+
+1.3 系统功能需求
+
+      后台管理端功能：
+      景点管理：列表（分页、搜索）、新增、修改、删除、详情。
+      栏目管理：列表、新增、删除。
+      分类管理：列表、新增、修改、删除。
+      轮播图管理：列表、新增/更新、删除。
+      封面图管理：获取封面图、更新封面图。
+      识别库管理：列表、上传入库、删除。
+      VR 管理：列表、新增、修改、删除、启用/停用。
+      历史人物管理：列表、新增、修改、删除。
+      视频管理：列表、新增、修改、删除、详情。
+      活动管理：列表、新增、修改、删除。
+      数据统计：基础数据、识别排行、VR 排行、热门排行、景点访问量、小时访问量、终
+端/性别分布。
+      文件上传：图片、音频、视频上传。
+      小程序端功能：
+      微信登录、手机号绑定、更新 unionId。
+      景点列表（分页）、附近景点（按经纬度排序）、按名称搜索、按分类查询、景点详情。
+      二级分类列表。
+      随机轮播背景图、封面图获取。
+      活动列表（/travel/getActivityList、/activ/list）、活动详情（复用景点详情）。
+      视频列表、视频详情。
+      历史人物列表/详情。
+      拍照识别（上传图片，返回识别景点或推荐景点）。
+      浏览量埋点：小程序整体访问、景点访问、VR 访问。
+      H5 订单中心/预约页（webview 跳转）。
+
+                                                                                                                                                           5]]></page><page Index="6"><![CDATA[山西农业大学软件工程专业实训软件开发设计文档
+
+1.4 其它非功能需求
+
+1.4.1 性能需求
+      列表接口响应时间 < 500ms（数据量 1 万条以内）。
+      分页查询使用 PageHelper，避免全表扫描。
+      景点详情聚合查询使用主表 + 详情表 + 分类表，避免 N+1 查询（批量回填分类名）。
+      拍照识别调用百度 AI 接口，设置超时时间（连接 2s，Socket 30s），并使用
+
+RateLimiter 限流（0.7 QPS）。
+      文件上传限制图片 2M，支持 gif/jpg/jpeg/png；音频支持 mp3/wav。
+      附近景点使用 Haversine 公式在内存中计算距离并排序，支持分页。
+
+1.4.2 安全措施需求
+      后台管理端接口使用 @PreAuthorize 进行权限校验（部分接口已加，部分待补）。
+      小程序端使用 token 鉴权，token 存于 Redis，有效期可配置。
+      敏感操作（删除、修改）需登录后执行。
+      文件上传限制类型和大小，防止恶意上传。
+      百度 AI 密钥、数据库密码等敏感信息配置在 application.yml 或 sys_config 表
+
+中，不硬编码。
+1.4.3 安全性需求
+
+      防止 SQL 注入：使用 MyBatis 预编译参数。
+      防止 XSS：富文本内容前端渲染时过滤，后端存储原样。
+      防止越权：小程序端只能访问已发布（status=1）的景点、活动、视频等。
+      数据备份：定期备份 MySQL 数据库。
+1.4.4 软件质量属性
+      易用性：后台管理界面简洁，操作流程清晰；小程序端适配移动端，交互流畅。
+      可移植性：后端基于 Spring Boot，可部署于 Windows/Linux；前端基于 Vue，可打
+包为静态资源；小程序端可发布至微信平台。
+      可维护性：分层清晰，Controller 只做参数校验和返回，Service 处理业务，Mapper
+负责 SQL；使用 DTO/VO 隔离实体。
+      可扩展性：新增业务模块只需增加 Controller、Service、Mapper、实体和表。
+      安全性：鉴权、权限、参数校验、文件上传限制。
+1.4.5 业务规则
+      景点、活动、视频等数据只有 status=1（或 deleted=0）时才在小程序端展示。
+      景点分类通过 travel_joint 表关联，一个景点可属于多个二级分类。
+      识别库入库需先上传图片，再调用百度 AI 接口，成功后记录 cont_sign。
+      拍照识别时，若相似度分数低于阈值（60），则返回推荐景点列表。
+      浏览量埋点记录用户 ID、景点 ID、事件类型、来源等。
+
+6]]></page><page Index="7"><![CDATA[张钧益：建筑可阅读导览系统
+
+      后台管理端删除栏目时，若栏目下存在景点，则提示“不可删除”。
+
+1.5 分析模型
+
+      无。
+
+2.软件概要设计
+
+2.1 设计概述
+
+      本系统采用若依框架经典的分层架构：表现层（Controller）、业务逻辑层（Service）、
+数据访问层（Mapper）、数据库（MySQL）。后台管理端与小程序端共用同一套后端接口，通
+过不同的路径前缀区分（如 /travel/backstage/* 为后台，/travel/* 为小程序）。系统
+通过雪花 ID 生成主键，使用 PageHelper 分页，使用 @Transactional 保证事务一致性。
+识别库与拍照识别依赖百度 AI 图像搜索服务，文件上传支持本地存储和云存储。
+
+2.2 系统逻辑设计
+
+      系统调用模块：
+      文 件 上 传 ： OssController 提 供 /travel/oss/upload 接 口 ， 保 存 文 件 至 本 地
+RuoYiConfig.getUploadPath()，返回 URL。
+      百度 AI：BaiduAIService 封装 AipImageSearch，提供图片入库、搜索、删除方法，
+使用 RateLimiter 限流。
+      微信登录：WxMaUserController 调用微信接口获取 openid，生成 token 返回小程
+序。
+      数据统计：WxDataController 查询 travel_scenic_view、travel_views 等表，返回
+统计结果。
+      数据模块：
+      景 点 数 据 ： travel_module_detail （ 主 表 ）、 travel_module （ 栏 目 ）、
+travel_sub_classification（二级分类）、travel_joint（关联表）。
+      识别库数据：travel_recognition_library（图片信息、cont_sign）。
+      VR 数据：travel_vr（VR 资源）、travel_vr_brief（全景图简介）。
+      视频数据：travel_video（视频信息）。
+      活动数据：book_activ（活动信息）。
+      历史人物：history_human（人物信息）。
+      浏览量：travel_scenic_view（景点访问）、travel_views（小程序访问）。
+      轮播图：travel_slideshow；封面图：travel_cover。
+      新模块（第 15 讲）：tb_travel_biz_category（分类）、tb_travel_biz_spot（景点主
+表）、tb_travel_biz_spot_detail（景点详情表）。
+
+                                                                                                                                                           7]]></page><page Index="8"><![CDATA[山西农业大学软件工程专业实训软件开发设计文档
+
+      逻辑模块（业务逻辑）：
+      景点管理：增删改查、分类关联、详情聚合。
+      识别库管理：入库、删除、列表。
+      拍照识别：调用百度 AI，匹配识别库，返回景点或推荐。
+      附近景点：计算距离、排序、分页。
+      数据统计：按时间范围、事件类型聚合。
+      文件上传：本地/云存储。
+      微信登录：openid 换 token，绑定手机号。
+
+2.3 数据库设计
+
+系统使用 MySQL 数据库 read_building，主要表如下：
+
+表名                          说明
+
+travel_module               栏目（大类）
+travel_module_detail        景点详情（主表）
+travel_sub_classification   二级分类
+travel_joint                景点与分类关联
+travel_recognition_library  识别库
+travel_vr                   VR 资源
+travel_video                视频
+book_activ                  活动
+history_human               历史人物
+travel_scenic_view          景点访问量
+travel_views                小程序访问量
+travel_slideshow            轮播图
+travel_cover                封面图
+travel_model_video          景点音频
+tb_travel_biz_category      文旅分类
+tb_travel_biz_spot          文旅景点主表
+tb_travel_biz_spot_detail   文旅景点详情表
+
+      关键字段说明：
+
+     ? travel_module_detail：id（雪花 ID）、module_id、name、picture_url、content、longitude（存“纬
+          度,经度”字符串）、vr_id、status、deleted、create_by、create_time 等。
+
+     ? travel_recognition_library：id、filename、url、tag、module_detail_id、source、cont_sign、is_storage、
+          storage_time。
+
+     ? travel_vr：id（自增）、name、status、identify（唯一）、create_by、create_time、vr_cover。
+     ? travel_video：id、name、tittle、cover、video、count、type、inx、create_by、create_time。
+     ? book_activ：id、background、name、type、url、status、create_by、create_time。
+     ? tb_travel_biz_spot：id、spot_name、category_id、cover_url、longitude、latitude、sort、status、
+
+          create_by、create_time、update_by、update_time。
+
+8]]></page><page Index="9"><![CDATA[张钧益：建筑可阅读导览系统
+
+     ? tb_travel_biz_spot_detail：id、spot_id、intro_html、traffic_guide、open_time。          有
+主键策略： 除 travel_vr 自增外，其余表主键均为雪花 ID，由后端 IdWorker.nextId() 生成。
+索 引 ： travel_joint 有 idx_scenic_id 、 idx_classification_id ； travel_recognition_library
+idx_module_detail_id；travel_video 有 idx_model_id。
+
+3.软件详细设计
+
+3.1 界面设计
+
+      后台管理端：
+      首页看板：展示基础数据卡片、识别排行柱状图、VR 排行、热门排行、访问量折线图、
+终端/性别分布饼图。
+      景点管理页：顶部搜索栏（名称、分类、状态），中部表格（景点名称、封面、分类、
+浏览量、VR 标识、操作），底部分页。新增/编辑弹窗包含名称、英文名、分类、封面图、
+背景图、经纬度、富文本内容、音频列表、VR 关联、历史人物、排序、状态等字段。
+      识别库管理页：图片网格展示，支持上传（选择文件后调用 /travel/oss/upload，再
+调用 /travel/backend/recognitionLibrary/storage/{tag}），支持批量删除。
+      轮播图管理页：表格展示图片、状态、创建时间，支持新增/更新（上传图片、设置状
+态）、删除。
+      封面图管理页：两个上传组件，分别对应 identity=0（拍照封面）和 identity=1（阅
+读封面）。
+      VR 管理页：表格展示名称、标识、VR 链接、状态、创建时间，支持新增、修改、删
+除、启用/停用。
+      历史人物管理页：表格展示姓名、日期、照片、内容，支持新增、修改、删除。
+      视频管理页：表格展示名称、封面、视频地址、排序，支持新增、修改、删除。
+      活动管理页：表格展示活动名称、背景图、类型、状态，支持新增、修改、删除。
+      小程序端：
+      首页：顶部轮播图（随机背景），中部活动入口、景点推荐，底部导航栏。
+      景点列表页：顶部二级分类 tab，支持“全部”“附近”伪分类，列表项展示封面图、
+名称、VR 角标、浏览量。
+      景点详情页：顶部轮播图，中文/英文介绍富文本，音频播放列表，VR 入口，历史人
+物列表，相关景点推荐。
+      拍照识别页：相机拍照或相册选择，上传后展示识别结果（景点详情跳转）或推荐景
+点列表。
+      视频页：视频列表，点击进入播放详情，支持推荐。
+      历史人物页：人物详情展示。
+      活动页：活动列表，点击进入活动详情（复用景点详情）。
+
+                                                                                         9]]></page><page Index="10"><![CDATA[山西农业大学软件工程专业实训软件开发设计文档
+
+3.2 过程设计
+
+    景点列表查询流程：
+
+    小程序端请求 GET /travel/scenicspot/list?pageNum=1&pageSize=6。
+
+    TravelController.travelScenicSpotList 调 用 startPage() ， 再 调 用
+
+TravelScenicSpotService.travelScenicSpotList。
+
+    Service 调用 Mapper 查询 travel_module_detail，按 status=1、deleted=0 过滤，
+
+按 inx 排序。
+      PageHelper 自动分页，返回 TableDataInfo。
+
+    景点详情查询流程：
+
+    小程序端请求 GET /travel/scenicspot/{id}。
+
+    TravelController.scenicspotDetail          调用
+
+TravelScenicSpotService.selectDetailById。
+
+    Service 调用 TravelModuleDetailMapper.selectScenicDetailById 查询主表及
+
+VR 链接， 再调用 TravelModelVideoMapper.selectByModelId 查询音 频列 表，组装
+
+TravelScenicDetailVo 返回。
+
+    拍照识别流程：
+    小程序端上传图片至 POST /travel/scanthing。
+
+    TravelController.scanthing 接 收 file 、 lat 、 long 等 参 数 ， 调 用
+
+TravelService.scanthing。
+
+    Service 调用 BaiduAIService.imageSearch 传入图片字节，百度返回相似结果。
+
+    若结果为空或分数低于阈值，调用 getRecommendTravelScenicSpots 随机返回 5 个
+
+有效景点，并记录推荐事件。
+
+    若识别成功，通过识别库 id 找到 module_detail_id，查询景点详情，记录识别事
+
+件，返回 ScanthingVo。
+
+    识别库入库流程：                                                  GET
+    后台请求
+
+/travel/backend/recognitionLibrary/storage/{tag}?filename=xxx&url=xxx&moduleD
+
+etailId=xxx。
+
+      RecognitionLibraryController.storage 组装 TravelRecognitionLibrary，调用
+TravelService.storageRecognitionLibrary。
+
+    Service 生成雪花 ID，从本地 URL 读取图片字节（readLocalUploadImage），调用
+
+BaiduAIService.imageAdd 传入字节，获取 cont_sign。
+
+    回填 cont_sign、is_storage=1、storage_time，插入 travel_recognition_library
+
+表。
+
+    附近景点流程：
+
+10]]></page><page Index="11"><![CDATA[张钧益：建筑可阅读导览系统
+
+      小程序端请求
+      GET /travel/near?longitude=xxx&latitude=xxx&pageNum=1&pageSize=6。
+      TravelController.selectNear 调用 TravelService.getnear。
+      Service 查询所有有效景点，逐个解析 longitude 字段（格式“纬度,经度”），用
+Haversine 公式计算距离，排序后内存分页，返回 TableDataInfo。
+      微信登录流程：
+      小程序端调用 wx.login 获取 code。
+      请求 GET /wx/user/{appid}/login?code=xxx。
+      WxMaUserController.login 调用微信 getSessionInfo 获取 openid、sessionKey。
+      若 openid 不存在，创建 sys_user 记录；存在则更新登录 IP、时间。
+      调用 SysLoginService.login(openId) 生成 token，返回 LoginResponseVo（含
+token、sessionKey、firstLogin）。
+
+4.软件实现
+
+4.1 程序设计语言的选择
+
+      后端使用 Java 语言，基于 Spring Boot 2.x、若依框架 3.x，数据库操作使用
+MyBatis + tk.mybatis，分页使用 PageHelper，缓存使用 Redis，JSON 处理使用 FastJSON，
+工具类使用 Apache Commons Lang3、Guava。前端后台使用 Vue 2.x + Element UI +
+Axios。小程序端使用微信小程序原生开发（WXML、WXSS、JS）。百度 AI 使用官方 Java
+SDK aip-java-sdk。
+
+4.2 编码风格说明
+
+      单行注释：// 注释文字
+      多行注释：/* 注释文字 */
+      类、方法、字段使用 Javadoc 注释，说明用途、参数、返回值。
+      包名：com.pz.travelbiz.controller、service、service.impl、mapper、domain、
+dto、vo。
+      类名：Controller 以 Controller 结尾，Service 接口以 I 开头、实现类以
+ServiceImpl 结尾，Mapper 以 Mapper 结尾，实体类以表名驼峰命名。
+      方法名：查询 selectXxx、新增 insertXxx、修改 updateXxx、删除 deleteXxx。
+      变量名：小驼峰，如 travelModuleDetail、recognitionLibrary。
+      使用 Lombok 注解 @Data、@Slf4j 简化代码。
+      异常处理：Service 层抛出运行时异常，Controller 层捕获或交由全局异常处理器。
+      事务：在 Service 实现类的增删改方法上添加 @Transactional(rollbackFor =
+Exception.class)。
+
+                                                                                                                                                          11]]></page><page Index="12"><![CDATA[山西农业大学软件工程专业实训软件开发设计文档
+
+      主键生成：统一使用 IdWorker.nextId()，无条件覆盖前端传入的 ID。
+
+4.3 详细实现过程及代码
+
+      整个 travel 模块主要包括以下文件：
+
+Controller 层 ： TravelController 、 TravelBackstageController 、 TravelVideoController 、 TravelVrController 、
+TravelSlideshowController、RecognitionLibraryController、HistoryHumanController、BookActivController、OssController、
+WxDataController 、 WxMaUserController 、 TravelClassificationController 、 TravelBizCategoryController 、
+TravelBizSpotController 等。
+Service 层 ： TravelService 、 TravelScenicSpotService 、 TravelModuleDetailServiceImpl 、 TravelVideoServiceImpl 、
+TravelVrServiceImpl 、 TravelSlideshowServiceImpl 、 TravelRecognitionLibraryService 、 HistoryHumanServiceImpl 、
+BookActivServiceImpl、TravelBizCategoryService、TravelBizSpotService 等。
+Mapper 层 ： TravelModuleDetailMapper 、 TravelVideoMapper 、 TravelVrMapper 、 TravelSlideshowMapper 、
+TravelRecognitionLibraryMapper、HistoryHumanMapper、BookActivMapper、TravelBizCategoryMapper、TravelBizSpotMapper、
+TravelBizSpotDetailMapper 等。
+实体类：TravelModuleDetail、TravelVideo、TravelVr、TravelSlideshow、TravelRecognitionLibrary、HistoryHuman、BookActiv、
+TravelBizCategory、TravelBizSpot、TravelBizSpotDetail 等。
+DTO/VO：TravelBizCategoryQueryDto、TravelBizCategorySaveDto、TravelBizCategoryListVo、TravelBizSpotQueryDto、
+TravelBizSpotSaveDto、TravelBizSpotListVo、TravelBizSpotDetailVo、TravelScenicDetailVo、ScanthingVo 等。
+工具类：BaiduAIService、IdWorker、SecurityUtils、DateUtils、StringUtils。
+
+      关键代码示例：
+      （1）景点列表 Controller（小程序端）
+
+java
+@GetMapping("/scenicspot/list")
+@ApiOperation(value = "获取景点信息列表")
+public TableDataInfo<TravelModuleDetail> travelScenicSpotList(Long subClassificationId, String blockId) {
+
+      startPage();
+      List<TravelModuleDetail> list = travelScenicSpotService.travelScenicSpotList(subClassificationId, blockId);
+      return getDataTable(list);
+}
+
+      （2）景点详情 Controller（小程序端）
+
+java
+@GetMapping("/scenicspot/{id}")
+@ApiOperation(value = "获取景点详情")
+public CommonResult<TravelScenicDetailVo> scenicspotDetail(@PathVariable Long id) {
+
+      TravelScenicDetailVo vo = travelScenicSpotService.selectDetailById(id);
+      if (vo == null) {
+
+            return CommonResult.fail().setResult("景点不存在");
+      }
+      return CommonResult.ok().setResult(vo);
+}
+
+      （3）拍照识别 Controller（小程序端）
+
+java
+12]]></page><page Index="13"><![CDATA[张钧益：建筑可阅读导览系统
+
+@PostMapping("/scanthing")
+@ApiOperation(value = "拍照识别")
+public CommonResult<ScanthingVo> scanthing(
+
+            @RequestParam("file") MultipartFile file,
+            @RequestParam(value = "lat", required = false) String lat,
+            @RequestParam(value = "long", required = false) String lng,
+            @RequestParam(value = "source", required = false) String source,
+            @RequestParam(value = "sourceDetail", required = false) String sourceDetail) throws Exception {
+      if (file == null || file.isEmpty()) {
+            return CommonResult.fail().setResult("上传文件不能为空");
+      }
+      byte[] data = file.getBytes();
+      String fileName = file.getOriginalFilename();
+      String tag = "1";
+      ScanthingVo vo = travelService.scanthing(tag, fileName, data, lng, lat,
+
+                  source == null ? "scan" : source, sourceDetail);
+      return CommonResult.ok().setResult(vo);
+}
+
+      （4）识别库入库 Service
+
+java
+@Transactional(rollbackFor = Throwable.class)
+public Boolean storageRecognitionLibrary(TravelRecognitionLibrary travelRecognitionLibrary,
+
+                                                              String[] tags, String userId) throws Exception {
+      if (travelRecognitionLibrary.getId() == null) {
+
+            travelRecognitionLibrary.setId(idWorker.nextId());
+      }
+      if (travelRecognitionLibrary.getSource() == null) {
+
+            travelRecognitionLibrary.setSource(2);
+      }
+      travelRecognitionLibrary.setIsStorage(0);
+      if (StringUtils.isNotBlank(userId)) {
+
+            travelRecognitionLibrary.setCreateBy(String.valueOf(userId));
+      }
+      travelRecognitionLibrary.setCreateTime(new Date());
+      byte[] imageBytes = readLocalUploadImage(travelRecognitionLibrary.getUrl());
+      String contSign;
+      if (imageBytes != null && imageBytes.length > 0) {
+
+            contSign = baiduAIService.imageAdd(tags, travelRecognitionLibrary.getFilename(),
+                        String.valueOf(travelRecognitionLibrary.getId()), imageBytes);
+
+      } else {
+            contSign = baiduAIService.imageAdd(tags, travelRecognitionLibrary.getFilename(),
+                        String.valueOf(travelRecognitionLibrary.getId()), travelRecognitionLibrary.getUrl());
+
+      }
+
+                                                                                                                13]]></page><page Index="14"><![CDATA[山西农业大学软件工程专业实训软件开发设计文档
+
+      if (StringUtils.isBlank(contSign)) {
+            throw new RuntimeException("百度识别库入库失败，图片：" + travelRecognitionLibrary.getFilename());
+
+      }
+      travelRecognitionLibrary.setContSign(contSign);
+      travelRecognitionLibrary.setIsStorage(1);
+      travelRecognitionLibrary.setStorageTime(new Date());
+      travelRecognitionLibraryMapper.insertTravelRecognitionLibrary(travelRecognitionLibrary);
+      return true;
+}
+
+      （5）附近景点 Service（距离计算与排序）
+
+java
+public TableDataInfo<TravelModuleDetail> getnear(String longitude, String latitude, int num, int size) {
+
+      TableDataInfo<TravelModuleDetail> rspData = new TableDataInfo<>();
+      rspData.setCode(HttpStatus.SUCCESS);
+      rspData.setMsg("查询成功");
+      TravelModuleDetail query = new TravelModuleDetail();
+      query.setStatus(1);
+      List<TravelModuleDetail> all = travelScenicSpotMapper.select(query);
+      if (all == null || all.isEmpty()) {
+
+            rspData.setRows(Collections.emptyList());
+            rspData.setTotal(0);
+            return rspData;
+      }
+      List<TravelModuleDetail> withDistance = new ArrayList<>();
+      for (TravelModuleDetail detail : all) {
+            String loc = detail.getLongitude();
+            if (StringUtils.isBlank(loc)) continue;
+            String[] parts = loc.split(",");
+            if (parts.length != 2) continue;
+            try {
+
+                  String lat2 = parts[0].trim();
+                  String lng2 = parts[1].trim();
+                  String distance = getDistance(latitude, longitude, lat2, lng2, detail);
+                  detail.setDistance(distance);
+                  withDistance.add(detail);
+            } catch (Exception e) {
+                  log.warn("景点经纬度解析失败: {}", loc);
+            }
+      }
+      withDistance.sort(Comparator.comparingInt(d -> parseDistanceToMeters(d.getDistance())));
+      int total = withDistance.size();
+      int from = Math.max(0, (num - 1) * size);
+      int to = Math.min(from + size, total);
+
+14]]></page><page Index="15"><![CDATA[张钧益：建筑可阅读导览系统
+
+      List<TravelModuleDetail> rows = (from >= total) ? Collections.emptyList()
+                  : new ArrayList<>(withDistance.subList(from, to));
+
+      rspData.setRows(rows);
+      rspData.setTotal(total);
+      return rspData;
+}
+
+      （6）文旅景点 Service（主表+详情表聚合保存）
+
+java
+@Transactional(rollbackFor = Exception.class)
+public int add(TravelBizSpotSaveDto dto) {
+
+      Long spotId = worker.nextId();
+      TravelBizSpot spot = new TravelBizSpot();
+      BeanUtils.copyProperties(dto, spot);
+      spot.setId(spotId);
+      spot.setCreateBy(SecurityUtils.getUsername());
+      spot.setCreateTime(new Date());
+      spotMapper.insertSelective(spot);
+      TravelBizSpotDetail detail = new TravelBizSpotDetail();
+      detail.setId(worker.nextId());
+      detail.setSpotId(spotId);
+      detail.setIntroHtml(dto.getIntroHtml());
+      detail.setTrafficGuide(dto.getTrafficGuide());
+      detail.setOpenTime(dto.getOpenTime());
+      spotDetailMapper.insertSelective(detail);
+      return 1;
+}
+
+      （7）百度 AI 相似图片搜索
+
+java
+public JSONArray imageSearch(String[] tags, byte[] file) {
+
+      HashMap<String, String> options = new HashMap<>();
+      if (tags != null && tags.length > 0) {
+
+            options.put("tags", StringUtils.join(tags, ','));
+            options.put("tag_logic", "0");
+      }
+      options.put("pn", "0");
+      options.put("rn", "10");
+      JSONObject res = client.similarSearch(file, options);
+      log.info("相似图片搜索，响应内容:{}", res.toString(2));
+      if (res.has("error_code")) {
+            log.error("百度 AI 搜索失败, error_code={}, error_msg={}",
+
+                        res.optInt("error_code"), res.optString("error_msg"));
+            return null;
+      }
+
+                                                                                 15]]></page><page Index="16"><![CDATA[山西农业大学软件工程专业实训软件开发设计文档
+
+      if (res.optInt("result_num", 0) > 0) {
+            return res.getJSONArray("result");
+
+      }
+      return null;
+}
+
+      （8）雪花 ID 生成（IdWorker）
+
+java
+@Autowired
+private IdWorker idWorker;
+// 在 Service 新增方法中：
+if (entity.getId() == null) {
+
+      entity.setId(idWorker.nextId());
+}
+
+      （9）分页查询（PageHelper）
+
+java
+@GetMapping("/list")
+public TableDataInfo list(TravelVideo query) {
+
+      startPage();
+      List<TravelVideo> list = travelVideoService.selectTravelVideoList(query);
+      return getDataTable(list);
+}
+
+      （10）事务控制
+
+java
+@Transactional(rollbackFor = Exception.class)
+public int remove(Long id) {
+
+      spotDetailMapper.deleteBySpotId(id);
+      return spo tMapper.deleteByPrimaryKey(id);
+}
+
+16]]></page><page Index="17"><![CDATA[张钧益：建筑可阅读导览系统
+
+                                         心得体会
+
+      这次实训是我第一次真正意义上跟着老师完整地接触若依框架，并独立承担一个业务
+模块的后端开发。以前做课程设计时，我习惯拿到需求就直接写代码，数据库表、接口、
+前端页面往往是一边写一边改，最后能跑起来就算完成。但这次不一样，老师已经提供了
+完整的前端小程序和网站页面，也给了明确的接口文档，我要做的不是“随便写一个能用
+的后端”，而是让后端严格符合前端已经约定好的路径、参数和返回结构。刚开始我觉得
+这只是个体力活，把 Controller 照着文档写一遍就行，但真正做下来才发现，后端开发
+的难点从来都不只是“写出接口”，而是让接口在真实联调中稳定、准确、可维护地工作。
+
+      在技术层面，我对若依框架的分层有了更具体的认识。Controller 层负责接收请求和
+返回结果，Service 层处理业务逻辑和事务，Mapper 层负责数据库访问，实体类、DTO 和
+VO 各自承担不同职责。以前我经常把这些东西混在一起写，Controller 里直接调 Mapper，
+或者把数据库实体直接返回给前端。这次在 travel 模块里，我逐步理解了为什么要用
+DTO 接收参数、用 VO 返回数据，为什么要用 @Transactional 保证主表和详情表要么一
+起成功、要么一起回滚。尤其是景点模块的主表和详情表拆分，让我第一次直观感受到“高
+频轻量字段”和“低频大字段”分开设计的意义：列表查询只查主表，详情页才去查富文
+本，这样既减少了数据库压力，也让代码职责更清晰。
+
+      实训过程中我也踩了不少坑，这些坑反而让我收获最大。比如有些表的主键没有设置
+自增，我一开始以为前端会传 ID，后来才发现必须由后端统一用雪花 ID 生成，否则新增
+数据会直接失败。再比如 startPage() 不能无脑加，后台列表需要分页，但小程序端不传
+分页参数时应该返回全部数据，否则用户只能看到前十条。还有参数拼写问题，前端文档
+里写的是 subClafficationId，而实体字段是 subClassificationId，如果不做兼容处理，
+分类筛选就会静默失效。这些细节让我意识到，接口文档不是参考材料，而是前后端协作
+的合同，任何字段名、参数位置、请求方法的偏差，都会在联调时变成实实在在的 bug。
+
+      另一个让我印象深刻的点是代码健全性。以前我判断代码好坏的标准是“能不能跑”，
+但这次我逐渐学会从更多维度去审视：主键策略是否统一，审计字段是否由后端填充，分
+页是否兼容不同端，权限注解是否补齐，备份类是否还在被扫描，返回结构是否和文档一
+致。这些内容在课堂上听起来很抽象，但在实际项目里，每一个小问题都可能让联调卡住
+半天。尤其是在分析已有 Controller 和 Service 时，我发现有些方法虽然能编译通过，
+但逻辑上并不完整，比如注释掉了 ID 生成、缺少事务、字段名和前端对不上。这让我明
+白，能运行只是最低要求，健壮、规范、可维护才是工程代码的目标。
+
+      通过这次实训，我也更清楚地认识到自己在软件工程方面的不足。第一是工程习惯还
+不够好，写代码时容易只关注当前功能，忽略边界情况和异常处理；第二是对框架的理解
+还停留在使用层面，遇到问题时排查速度不够快；第三是文档意识和接口契约意识需要加
+强，不能只凭感觉写代码。接下来我打算继续补强 Spring Boot、MyBatis、Redis 和微信
+小程序后端相关的知识，多阅读优秀项目的源码，尤其要在“接口设计、事务控制、异常
+
+                                                                                                                                                          17]]></page><page Index="18"><![CDATA[山西农业大学软件工程专业实训软件开发设计文档
+
+处理、权限校验”这几个方面多下功夫。这次实训虽然没有做出多么庞大的系统，但它让
+我第一次真正体会到后端开发的责任：后端不只是把数据从数据库里取出来，更是整个系
+统稳定运行的基石。感谢老师的指导和这次宝贵的实践机会，我会把这次实训中学到的东
+西带到以后的学习和工作中去。
+
+18]]></page></pages></Search>

@@ -1,1 +1,2 @@
-/*    /index.html   200
+/ebook/*  /ebook/:splat  200
+/*        /index.html    200

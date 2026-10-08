@@ -16,6 +16,13 @@
           <div class="portfolio-item-tech">
             <span v-for="tag in item.tags" :key="tag">{{ tag }}</span>
           </div>
+          <a
+              v-if="item.link"
+              :href="item.link"
+              target="_blank"
+              rel="noopener"
+              class="portfolio-item-link"
+          >查看项目报告</a>
         </div>
       </div>
     </div>
