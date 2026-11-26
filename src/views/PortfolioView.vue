@@ -26,6 +26,13 @@
               class="portfolio-item-link"
               @click.prevent="openCert(item.certificate)"
           >查看证明</a>
+          <a
+              v-if="item.link"
+              :href="item.link"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="portfolio-item-link"
+          >查看官方通知</a>
         </div>
       </div>
     </div>

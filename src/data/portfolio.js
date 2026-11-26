@@ -27,6 +27,22 @@ export const portfolioItems = [
   // ==================== 荣誉奖励 ====================
   {
     category: '荣誉奖励',
+    title: '山西省第八届大学生艺术展演 · 影视类甲组 省级二等奖<br>（2026年）',
+    desc: '作品《永强・逐光》在山西省第八届大学生艺术展演中荣获影视类甲组省级二等奖，由山西省教育厅颁发。团队共4人主创，本人负责后期视频剪辑。',
+    tags: ['艺术展演', '影视创作', '后期剪辑'],
+    certificate: '',
+    link: 'https://jyt.shanxi.gov.cn/xwzx/ggtz/202611/t20261125_10267090.html'
+  },
+  {
+    category: '荣誉奖励',
+    title: '第七届中华经典诵写讲大赛 · 大学生组 优秀奖<br>《对话·红色追思》（山西省）',
+    desc: '作品《对话·红色追思》在第七届中华经典诵写讲大赛中荣获大学生组优秀奖（山西省）。团队成员：王雅蓉、赵斐、张钧益、殷嘉艺、刘尚东、卞嘉琛。',
+    tags: ['经典诵写讲', '语言文化', '团队合作'],
+    certificate: '',
+    link: 'https://jdsxj.eduyun.cn/hd/sxj/detail?contentId=5f51fce6-646e-4572-a62c-b6ff2e006429&contentType=article&libraryId=4d2b3348-ad9c-44a6-a19b-61d7ae354685&firstLevel=edd265d1-5529-4393-813c-07d3bd1fd334&align=center'
+  },
+  {
+    category: '荣誉奖励',
     title: '山西农业大学专业二等奖学金<br>（2023-2024学年）',
     desc: '在大学一年级期间，通过优异的学习成绩和综合表现，获得山西农业大学专业二等奖学金。',
     tags: ['学术成就', '优秀学生'],

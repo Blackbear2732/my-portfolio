@@ -13,6 +13,7 @@
       <li><router-link to="/" active-class="active" @click="menuOpen = false">首页</router-link></li>
       <li><router-link to="/life" active-class="active" @click="menuOpen = false">生活记录</router-link></li>
       <li><router-link to="/portfolio" active-class="active" @click="menuOpen = false">个人成就</router-link></li>
+      <li><router-link to="/party" active-class="active" @click="menuOpen = false">入党历程</router-link></li>
       <li><router-link to="/projects" active-class="active" @click="menuOpen = false">项目经历</router-link></li>
     </ul>
   </nav>
